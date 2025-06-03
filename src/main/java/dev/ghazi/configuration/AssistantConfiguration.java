@@ -32,7 +32,7 @@ public class AssistantConfiguration {
     @Bean
     @Scope(SCOPE_PROTOTYPE)
     ChatMemory chatMemory() {
-        return MessageWindowChatMemory.withMaxMessages(10);
+        return MessageWindowChatMemory.withMaxMessages(100);
     }
 
     @Bean
