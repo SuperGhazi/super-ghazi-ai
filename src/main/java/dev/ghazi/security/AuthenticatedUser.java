@@ -1,8 +1,10 @@
 package dev.ghazi.security;
 
 import com.vaadin.flow.spring.security.AuthenticationContext;
-import dev.ghazi.data.User;
-import dev.ghazi.data.UserRepository;
+
+import dev.ghazi.model.User;
+import dev.ghazi.repository.UserRepository;
+
 import java.util.Optional;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -28,5 +30,4 @@ public class AuthenticatedUser {
     public void logout() {
         authenticationContext.logout();
     }
-
 }
