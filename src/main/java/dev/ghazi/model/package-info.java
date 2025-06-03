@@ -1,4 +1,4 @@
 @NonNullApi
-package dev.ghazi.data;
+package dev.ghazi.model;
 
 import org.springframework.lang.NonNullApi;

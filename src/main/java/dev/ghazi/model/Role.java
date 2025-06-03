@@ -1,4 +1,4 @@
-package dev.ghazi.data;
+package dev.ghazi.model;
 
 public enum Role {
     USER, ADMIN;
