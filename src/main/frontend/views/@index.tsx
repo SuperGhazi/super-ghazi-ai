@@ -3,7 +3,7 @@ import { useSignal } from '@vaadin/hilla-react-signals';
 import { MessageInput, MessageInputSubmitEvent, MessageList, MessageListItem } from '@vaadin/react-components';
 import { format } from 'date-fns';
 import { ChatService } from 'Frontend/generated/endpoints';
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 
 export const config: ViewConfig = {
   menu: { order: 0, icon: 'line-awesome/svg/globe-solid.svg' },
@@ -17,17 +17,6 @@ export default function HomeView() {
   const announcement = useSignal('');
 
   const isoMinutes = 'yyyy-MM-dd HH:mm';
-
-  useEffect(() => {
-    messageListItems.value = [
-      {
-        text: 'Hey, how can I help you?',
-        time: format(new Date(), isoMinutes),
-        userName: 'Assistant',
-        userColorIndex: 2,
-      }
-    ];
-  }, []);
 
   function createItem(text: string, assistant = false): MessageListItem {
     return {
