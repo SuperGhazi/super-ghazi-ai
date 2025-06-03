@@ -2,7 +2,8 @@ package dev.ghazi.services;
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
-import dev.ghazi.data.User;
+
+import dev.ghazi.model.User;
 import dev.ghazi.security.AuthenticatedUser;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,5 +1,7 @@
 package dev.ghazi.services;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+
 import com.vaadin.hilla.Endpoint;
 
 import jakarta.annotation.security.PermitAll;
@@ -15,6 +17,7 @@ public class ChatService {
 
     @PermitAll
     public Flux<@NonNull String> chat(String message) {
-        return assistant.chat(message);
+        var username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return assistant.chat(username, message);
     }
 }

@@ -1,44 +1,26 @@
 package dev.ghazi.services;
 
-import dev.ghazi.data.User;
-import dev.ghazi.data.UserRepository;
-import java.util.Optional;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
-import org.springframework.stereotype.Service;
+import java.util.List;
 
-@Service
+import com.vaadin.hilla.Endpoint;
+
+import dev.ghazi.dto.UserRecord;
+import dev.ghazi.mapper.UserMapper;
+import dev.ghazi.repository.UserRepository;
+import jakarta.annotation.security.PermitAll;
+import lombok.RequiredArgsConstructor;
+
+@Endpoint
+@RequiredArgsConstructor
 public class UserService {
 
-    private final UserRepository repository;
+    private final UserRepository userRepository;
 
-    public UserService(UserRepository repository) {
-        this.repository = repository;
+    @PermitAll
+    public List<UserRecord> findAllUsers() {
+        return userRepository.findAll()
+                .stream()
+                .map(user -> UserMapper.toUserRecord(user))
+                .toList();
     }
-
-    public Optional<User> get(Long id) {
-        return repository.findById(id);
-    }
-
-    public User save(User entity) {
-        return repository.save(entity);
-    }
-
-    public void delete(Long id) {
-        repository.deleteById(id);
-    }
-
-    public Page<User> list(Pageable pageable) {
-        return repository.findAll(pageable);
-    }
-
-    public Page<User> list(Pageable pageable, Specification<User> filter) {
-        return repository.findAll(filter, pageable);
-    }
-
-    public int count() {
-        return (int) repository.count();
-    }
-
 }
