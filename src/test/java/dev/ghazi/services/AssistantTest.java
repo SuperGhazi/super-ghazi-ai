@@ -12,7 +12,7 @@ class AssistantTest {
 
     @Test
     void testChat() {
-        assistant.chat("Hello, who are you?")
+        assistant.chat("b.holland", "Hello, who are you?")
             .doOnNext(response -> System.out.println("Response: " + response))
             .doOnError(error -> System.err.println("Error: " + error.getMessage()))
             .blockLast();
