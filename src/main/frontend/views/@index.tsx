@@ -3,6 +3,7 @@ import { useSignal } from '@vaadin/hilla-react-signals';
 import { MessageInput, MessageInputSubmitEvent, MessageList, MessageListItem } from '@vaadin/react-components';
 import { format } from 'date-fns';
 import { ChatService } from 'Frontend/generated/endpoints';
+import { useAuth } from 'Frontend/util/auth';
 import { useCallback } from 'react';
 
 export const config: ViewConfig = {
@@ -16,13 +17,15 @@ export default function HomeView() {
   const messageListItems = useSignal<MessageListItem[]>([]);
   const announcement = useSignal('');
 
+  const { state } = useAuth();
+
   const isoMinutes = 'yyyy-MM-dd HH:mm';
 
   function createItem(text: string, assistant = false): MessageListItem {
     return {
       text,
       time: format(new Date(), isoMinutes),
-      userName: assistant ? 'Assistant' : 'User',
+      userName: assistant ? 'Silo IA' : state.user?.name,
       userColorIndex: assistant ? 2 : 1,
     };
   }
